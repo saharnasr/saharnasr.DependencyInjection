@@ -1,0 +1,44 @@
+﻿@using System.Collections.Generic;
+@model IEnumerable<MVCUnityIOCDemo.DomainModels.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel-heading panel-head" > <h4>Products Listing</h4></div>
+<div class="panel-body">
+    <a id="createproduct"
+       href="@Url.Action("Create")" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span>Product
+    </a>
+
+    
+    <table class="table table-responsive table-bordered table-striped" style="margin: 4px">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Details</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Category</td>
+                    <td>@item.Price</td>
+                    <td>@Html.ActionLink("Details", "Details", new { @Id = item.Id }, new { @class = "btn btn-success" })</td>
+                    <td>@Html.ActionLink("Edit", "Edit", new { @Id = item.Id }, new { @class = "btn btn-primary" })</td>
+                    <td>@Html.ActionLink("Delete", "Delete", new { @Id = item.Id }, new { @class = "btn btn-danger" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+
